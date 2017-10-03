@@ -26,10 +26,13 @@
     	});
     	
     	var ckId = function(){
+    		alert("확인");
     		$.ajax({
-    			url:"${pageContext.request.contextPath}/ck.do"
-    			,type:"post"
-    			,dataType:"json"
+    			url:"CatSoft/memeber/ck.do"
+    			,type:"get"
+    			,dataType: {
+    				"id" : $("#id").val()
+    			}
     			,success:showCk
     			,error:errorCallBack
     		});
@@ -55,7 +58,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="${pageContext.request.contextPath}/index.html">CatSoft</a>
+            <a class="navbar-brand" href="${pageContext.request.contextPath}/index.jsp">CatSoft</a>
         </div>
     </div>
 </div>
@@ -83,15 +86,16 @@
             </div>
             <div class="well">
                 <p id="show">회원가입을 위해 아래 내용들을 작성해 주세요.</p>
-                <form class="form-horizontal" action="${pageContext.request.contextPath}/join" method="POST" onsubmit="ckPassword()">
+                <form class="form-horizontal" action="${pageContext.request.contextPath}/memeber/join.do" method="POST" onsubmit="ckPassword()">
                     <fieldset>
                         <div class="form-group">
-                            <label class="col-lg-1 control-label">아이디</label>
+                            <label class="col-lg-2 control-label">아이디</label>
 
                             <div class="col-lg-10">
-<!--                             	<button id="btnCk">중복확인</button> -->
                                 <input type="text" style="width: 60%; display: inline-block;" class="form-control" placeholder="아이디" id="id" name="id" value="${user.id }">
-                            	<label style="display: inline-block;"></label>
+<!--                             	<button id="btnCheck" onclick="return false;">중복확인</button> -->
+									<input type="button" onclick="ckId()" value="중복확인">
+                            	<label style="display: inline-block;" id="show"></label>
                             </div>
                         </div>
                         <div class="form-group">

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import domain.Member;
@@ -16,6 +17,17 @@ public class MemberController {
 
 	@Autowired
 	private MemberService service;
+	
+	//중복확인
+	@RequestMapping("ck.do")
+	@ResponseBody
+	public int findMember(String id) {
+		System.out.println("넘어오는지 알고 싶어요");
+		Member member = service.findMember(id);
+		System.out.println("아이디 찾아지는지" + member.getId());
+		return 1;
+		
+	}
 	
 	//회원가입
 	@RequestMapping("regist.do")
@@ -48,6 +60,13 @@ public class MemberController {
 	}
 	
 	
-	//중복확인
+	//회원정보 수정
+	
+	//회원 탈퇴
+	
+	
+	
+	
+	
 	
 }
